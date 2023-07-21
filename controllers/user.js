@@ -80,9 +80,13 @@ const loginuser = asyncHandler(async(req,res)=>{
         },
       },
       process.env.TOKEN_SECRET,
-      { expiresIn: "10m" }
-      )
-      res.status(200).json({accesstoken});
+      { expiresIn: "1h" }
+    //   ,{ expiresIn: "10m" }
+      );
+    //   res.status(200).json({accesstoken});
+      res.status(200).cookie("accesstoken",accesstoken,{
+        httpOnly: true,
+      }).json({accesstoken});
    }else{
     res.status(400);
     throw new Error("email or password is wrong");

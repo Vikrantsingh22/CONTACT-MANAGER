@@ -3,7 +3,9 @@ const errorhandler = require("./middleware/errorhandler");
 const app=express();
 const dotenv= require("dotenv").config();
 const connectdb=require("./config/dbconnect")
+const cookieParser = require("cookie-parser");
 
+app.use(cookieParser());
 connectdb();
 const port=process.env.PORT || 5000;
 

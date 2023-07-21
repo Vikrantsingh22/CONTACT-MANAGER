@@ -7,11 +7,13 @@ const{getidContact}=require("../controllers/contactcontroller");
 const{createContact}=require("../controllers/contactcontroller");
 const{deleteContact}=require("../controllers/contactcontroller");
 const validationtoken = require("../middleware/validatetoken");
+const { cookieauthorization } = require("../middleware/cookieauth");
 // to access this get method we need to use the above exports 
 
 //here we are protecting the contacts using validation using jwt
 
-router.get("/",validationtoken ,getContact);
+// router.get("/",validationtoken ,getContact);
+router.get("/", cookieauthorization ,getContact);
 
 router.put("/:id",validationtoken ,updateContact);
 
