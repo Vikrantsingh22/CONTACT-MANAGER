@@ -6,7 +6,7 @@ const{updateContact}=require("../controllers/contactcontroller");
 const{getidContact}=require("../controllers/contactcontroller");
 const{createContact}=require("../controllers/contactcontroller");
 const{deleteContact}=require("../controllers/contactcontroller");
-const validationtoken = require("../middleware/validatetoken");
+// const validationtoken = require("../middleware/validatetoken");
 const { cookieauthorization } = require("../middleware/cookieauth");
 // to access this get method we need to use the above exports 
 
@@ -15,11 +15,13 @@ const { cookieauthorization } = require("../middleware/cookieauth");
 // router.get("/",validationtoken ,getContact);
 router.get("/", cookieauthorization ,getContact);
 
-router.put("/:id",validationtoken ,updateContact);
+// router.put("/:id",validationtoken ,updateContact);
+router.put("/:id",cookieauthorization ,updateContact);
 
-router.get("/:id",validationtoken ,getidContact);
+// router.get("/:id",validationtoken ,getidContact);
+router.get("/:id",cookieauthorization ,getidContact);
 
-router.post("/",validationtoken ,createContact);
+router.post("/",cookieauthorization ,createContact);
 
 //localhost:5001/contact/:id
 // router.delete("/:id",(req,res)=>{
@@ -28,6 +30,6 @@ router.post("/",validationtoken ,createContact);
 //     })
 // })
 
-router.delete("/:id",validationtoken ,deleteContact);
+router.delete("/:id",cookieauthorization ,deleteContact);
 
 module.exports=router;
