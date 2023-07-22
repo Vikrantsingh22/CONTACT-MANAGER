@@ -1,7 +1,7 @@
 const express = require("express");
 const router= express.Router();
 
-const{getContact}=require("../controllers/contactcontroller");
+const{getContact, updateform, searchform, createform, deleteform}=require("../controllers/contactcontroller");
 const{updateContact}=require("../controllers/contactcontroller");
 const{getidContact}=require("../controllers/contactcontroller");
 const{createContact}=require("../controllers/contactcontroller");
@@ -16,12 +16,16 @@ const { cookieauthorization } = require("../middleware/cookieauth");
 router.get("/", cookieauthorization ,getContact);
 
 // router.put("/:id",validationtoken ,updateContact);
-router.put("/:id",cookieauthorization ,updateContact);
+router.post("/update",cookieauthorization ,updateContact);
+router.get("/update",cookieauthorization ,updateform);
 
 // router.get("/:id",validationtoken ,getidContact);
-router.get("/:id",cookieauthorization ,getidContact);
+router.post("/search",cookieauthorization ,getidContact);
+router.get("/search",cookieauthorization ,searchform);
 
-router.post("/",cookieauthorization ,createContact);
+router.post("/create",cookieauthorization ,createContact);
+router.get("/create",cookieauthorization ,createform);
+
 
 //localhost:5001/contact/:id
 // router.delete("/:id",(req,res)=>{
@@ -30,6 +34,7 @@ router.post("/",cookieauthorization ,createContact);
 //     })
 // })
 
-router.delete("/:id",cookieauthorization ,deleteContact);
+router.post("/delete",cookieauthorization ,deleteContact);
+router.get("/delete",cookieauthorization ,deleteform);
 
 module.exports=router;

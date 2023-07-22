@@ -1,7 +1,7 @@
 //@desc get all contact
 //@route GET /contact/
 //@access private
-
+const path = require("path");
 // yaha par code ko modularize kar rahe hain
 // yaha par hummlog functions create kar rahe hain 
 // yeh function ka use routes ke andar karenge
@@ -29,8 +29,11 @@ const getContact = asynchandler(async(req,res)=>{
 );
 
 //private
+const updateform=asynchandler(async(req,res)=>{
+    res.sendFile(path.join(__dirname,"../views/update.html"));
+})
 const updateContact=asynchandler(async(req,res)=>{
-    const contact = await Contact.findById(req.params.id);
+    const contact = await Contact.findById(req.body.id);
     if(!contact){
         res.status(404).json({message:"contact not found"});
     }
@@ -39,7 +42,7 @@ const updateContact=asynchandler(async(req,res)=>{
         res.status(403);
         throw new Error("you are trying to access someone else contact")
     }
-    const updatedcontact = await Contact.findByIdAndUpdate(req.params.id,
+    const updatedcontact = await Contact.findByIdAndUpdate(req.body.id,
         /*enter what we need  */req.body,{
             new:true /* it is query section */
         });
@@ -48,9 +51,12 @@ const updateContact=asynchandler(async(req,res)=>{
 })
 
 //private
+const searchform=asynchandler(async(req,res)=>{
+    res.sendFile(path.join(__dirname,"../views/search.html"));
+})
 const getidContact=asynchandler(async(req,res)=>{
     // await is very important over here
-    const contact =await Contact.findById(req.params.id);
+    const contact =await Contact.findById(req.body.id);
     if(!contact){
         res.status(404);
         throw new Error("contact not found");
@@ -65,6 +71,9 @@ const getidContact=asynchandler(async(req,res)=>{
 });
 
 //private
+const createform=asynchandler(async(req,res)=>{
+    res.sendFile(path.join(__dirname,"../views/create.html"));
+})
 const createContact=asynchandler(async(req,res)=>{
     // error handling for  inputs
     // while  creating the user contact we need provide the email,phone,name 
@@ -86,8 +95,11 @@ const createContact=asynchandler(async(req,res)=>{
 })
 
 //private
+const deleteform=asynchandler(async(req,res)=>{
+    res.sendFile(path.join(__dirname,"../views/delete.html"));
+})
 const deleteContact=asynchandler(async(req,res)=>{
-    const contact = await Contact.findById(req.params.id);
+    const contact = await Contact.findById(req.body.id);
     if(!contact)
     {
         res.status(404);
@@ -102,4 +114,4 @@ const deleteContact=asynchandler(async(req,res)=>{
     res.json(contact)
 })
 
-module.exports={getContact,createContact,getidContact,updateContact,deleteContact}
+module.exports={getContact,createContact,getidContact,updateContact,deleteContact,updateform,deleteform,searchform,createform}
