@@ -11,7 +11,7 @@ Follow the steps below to get the Contact Manager web application up and running
 2. Clone the forked repository to your local system using the following command:
 
 ```
-git clone https://github.com/your-username/contact-manager.git
+git clone [https://github.com/your-username/contact-manager.git](https://github.com/Vikrantsingh22/CONTACT-MANAGER.git)
 ```
 
 ### Step 2: Create .env File
