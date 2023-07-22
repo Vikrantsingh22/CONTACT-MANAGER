@@ -5,6 +5,13 @@ const asyncHandler = require("express-async-handler");
 const usermodel =require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const path = require("path");
+
+const signupform = asyncHandler(async(req,res)=>{
+    res.sendFile(path.join(__dirname,"../views/signup.html"));
+  })
+  
+
 const registeruser = asyncHandler(async(req, res)=>{
     const { username, email, password } = req.body;
     if(!username || !email || !password){
@@ -36,12 +43,13 @@ const registeruser = asyncHandler(async(req, res)=>{
     // console.log("user credentials",userdoc);
     // if user is created successfully
     if(userdoc){
-        res.status(201).json({_id:userdoc.id, email:userdoc.email});
+        // res.status(201).json({_id:userdoc.id, email:userdoc.email});
+        res.status(201).sendFile(path.join(__dirname,"../views/login.html"));
     }else{
         res.status(400);
         throw new Error("user registration unsuccessful");
     }
-    res.json({ message: "register the user"});
+    // res.json({ message: "register the user"});
 });
 
 
@@ -49,6 +57,10 @@ const registeruser = asyncHandler(async(req, res)=>{
 // it is controller method for userlogin post request from
 // from /routes/user
 //@route post request /user/login
+
+const loginform = asyncHandler(async(req,res)=>{
+  res.sendFile(path.join(__dirname,"../views/login.html"));
+})
 
 const loginuser = asyncHandler(async(req,res)=>{
     //fetch email and password from body
@@ -86,12 +98,12 @@ const loginuser = asyncHandler(async(req,res)=>{
     //   res.status(200).json({accesstoken});
       res.status(200).cookie("accesstoken",accesstoken,{
         httpOnly: true,
-      }).json({accesstoken});
+      }).sendFile(path.join(__dirname,"../views/contactpage.html"));
    }else{
     res.status(400);
     throw new Error("email or password is wrong");
    } 
-    res.json({ message: "login the user"});
+    // res.json({ message: "login the user"});
 });
 
 // it will be a private route as user info should not be shared
@@ -106,4 +118,4 @@ const currentuser = asyncHandler(async(req,res)=>{
     // here req.user is from decoded.user inside the validation token
 });
 
-module.exports = {registeruser,loginuser,currentuser}
+module.exports = {registeruser,loginuser,currentuser,loginform,signupform}

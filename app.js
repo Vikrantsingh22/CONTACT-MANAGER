@@ -4,6 +4,10 @@ const app=express();
 const dotenv= require("dotenv").config();
 const connectdb=require("./config/dbconnect")
 const cookieParser = require("cookie-parser");
+const path = require("path")
+app.use(express.static(path.join(__dirname,"public")));
+app.use(express.urlencoded({extended: true}));
+app.set("view engine","ejs");
 
 app.use(cookieParser());
 connectdb();
