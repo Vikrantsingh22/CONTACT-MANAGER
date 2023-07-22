@@ -1,6 +1,5 @@
 # Contact Manager Web Application
 
-![Contact Manager](https://example.com/contact-manager.png)
 
 ## Getting Started
 
