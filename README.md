@@ -45,7 +45,7 @@ npm ci
 
 The Contact Manager web application provides functionalities for managing contacts digitally. It includes the following routes:
 
-- `localhost:portnumber/home`: Access the homepage.
+- `localhost:portnumber/`: Access the homepage.
 - `localhost:portnumber/user/register`: Access the signup page.
 - `localhost:portnumber/user/login`: Access the login page and receive a cookie for authentication to access protected routes.
 
