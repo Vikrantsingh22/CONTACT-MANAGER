@@ -13,8 +13,8 @@ app.use(cookieParser());
 connectdb();
 const port=process.env.PORT || 5000;
 
-app.get("/home",(req,res)=>{
-    res.send("hello")
+app.get("/",(req,res)=>{
+    res.sendFile(path.join(__dirname,"./views/homepage.html"));
 })
 
 

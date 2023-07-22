@@ -1,33 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Contact Manager</title>
+  <title>Phone Diary - Contact Manager</title>
   <link rel="stylesheet" href="/contactstyles.css">
 </head>
 <body>
-  <h1>Contact Manager</h1>
-  <h2>Options:</h2>
-  <ul>
-    <li>
-      <form action="/contact/update/" method="get">
-      <button type="submit">update contact</button>
-   </form></li>
-    <li><form action="/contact/search/" method="get">
-      <button type="submit">get contact by ID</button>
-   </form></li>
-    <li><form action="/contact/delete/" method="get">
-      <button type="submit">Delete the contact</button>
-   </form></li>
-   <form action="/contact/" method="get">
-      <button type="submit">get all contact</button>
-   </form>
-    <li><form action="/contact/create/" method="get">
-      <button type="submit">Create a contact</button>
-   </form></li>
-    <li><form action="/user/current/" method="get">
-      <button type="submit">Get current user information</button>
-   </form></li>
-  </ul>
+  <nav class="navbar">
+    <div class="brand">
+      <h2 class="brand1">Phone Diary</h2>
+    </div>
+    <div class="logout">
+      <form action="/user/logout/" method="get">
+        <button type="submit">Logout</button>
+      </form>
+      
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>Contact Manager</h2>
+    <ul>
+      <li>
+        <form action="/contact/update/" method="get">
+          <button type="submit">Update Contact</button>
+        </form>
+      </li>
+      <li>
+        <form action="/contact/search/" method="get">
+          <button type="submit">Get Contact by ID</button>
+        </form>
+      </li>
+      <li>
+        <form action="/contact/delete/" method="get">
+          <button type="submit">Delete the Contact</button>
+        </form>
+      </li>
+      <li>
+        <form action="/contact/" method="get">
+          <button type="submit">Get All Contacts</button>
+        </form>
+      </li>
+      <li>
+        <form action="/contact/create/" method="get">
+          <button type="submit">Create a Contact</button>
+        </form>
+      </li>
+      <li>
+        <form action="/user/current/" method="get">
+          <button type="submit">Get Current User Information</button>
+        </form>
+      </li>
+    </ul>
+  </div>
 
   <div id="result"></div>
 
